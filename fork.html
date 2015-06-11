@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分叉图</title>
+    <link rel="stylesheet" href="css/fork.css">
+    <script src="js/fork.js"></script>
+</head>
+<body>
+    <div id="fork">
+    </div>
+<script>
+    
+    var fork = new Fork("#fork");
+
+    fork.setData({
+        name: "根节点",
+        fork:[
+            {
+                label: "YES",
+                node:{
+                    name: "正确答案",
+                    info:"",
+                    fork:[
+                        {label: "YES", node:{name: "正确答案正确答案正确答案",fork:[]}},
+                        {label: "NO", node:{name: "错误答案",fork:[]}}
+                    ]
+                }
+            },{
+                label: "NO",
+                node:{
+                    name: "错误答案",
+                    fork:[
+                        {label: "NO", node:{name: "错误答案",fork:[
+                            {label: "YES1", node:{name: "正确答案正确答案正确答案",fork:[]}},
+                            {label: "YES2", node:{name: "正确答案正确答案正确答案", id: "test-leaf",fork:[]}}
+                        ]}},
+                        {label: "YES", node:{name: "正确答案正确答案正确答案xx",fork:[]}}
+                    ]
+                }
+            }
+        ]
+    });
+
+    setTimeout(function() {
+        fork.addLabel( document.getElementById('test-leaf'), "测试分支: 是" );
+        setTimeout(function() {
+            fork.addLabel( document.getElementById('test-leaf'), "测试分支: 否" );
+        }, 3000);    
+    }, 3000);
+
+</script>
+</body>
+</html>

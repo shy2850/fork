@@ -1,0 +1,31 @@
+.fork-holder{
+    text-align: center;
+    font: normal 12px/1.5 "Microsoft Yahei";
+}
+.fork-holder *{
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+.fork-holder dl{
+    position: absolute;
+    height: 120px;
+}
+.fork-holder dt{
+    background: #2cac93;
+    color: #fff;
+    width: 90px;
+    padding: 2px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.fork-holder dd{
+    position: absolute;
+    top: 60px;
+}
+.fork-holder .dt-empty{
+    background: #d2d2d2;
+}
