@@ -42,12 +42,42 @@
         ]
     });
 
+    var test = document.getElementById('test-leaf');
+
+    // 增加测试分支
     setTimeout(function() {
-        fork.addLabel( document.getElementById('test-leaf'), "测试分支: 是" );
-        setTimeout(function() {
-            fork.addLabel( document.getElementById('test-leaf'), "测试分支: 否" );
-        }, 3000);    
+        fork.addLabel( test, "测试分支: 是" );
+    }, 1000);
+    setTimeout(function() {
+        fork.addLabel( test, "测试分支: 否" );
+    }, 2000);    
+    setTimeout(function() {
+        fork.addLabel( test, "测试分支: 晕" );
     }, 3000);
+
+    // 修改分支信息
+    setTimeout(function() {
+        fork.setNode( test.children[1].children[1].children[0], {
+            name: "修改1",
+            info: "修改1有信息"
+        } );
+    }, 5000);
+    setTimeout(function() {
+        fork.setNode( test.children[2].children[1].children[0], {
+            name: "修改2",
+            info: "修改2有信息"
+        } );
+    }, 6000);
+    setTimeout(function() {
+        fork.setNode( test.children[3].children[1].children[0], {
+            name: "修改3",
+            info: "修改3无信息"
+        } );
+    }, 7000);
+
+    setTimeout(function() {
+        alert( JSON.stringify( fork.parse(), null, 4 ) );
+    }, 8000);
 
 </script>
 </body>

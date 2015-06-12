@@ -35,6 +35,11 @@
     var parse = function(dl){
         if( !dl || !dl.children ) {
             return null;
+        }else{
+            if( document.querySelectorAll(".dt-empty").length ){
+                alert( "有空节点为完成编辑！" );
+                return null;
+            }
         }
         var cdr = dl.children,
             dt = cdr[0],
@@ -100,6 +105,18 @@
             node.appendChild(dd);
             position( this.holder.children[0] );
             return dd;
+        };
+
+        this.setNode = function(node, data){
+            node.classList.remove("dt-empty");
+            node.innerHTML = data.name;
+            if(data.info){
+                node.title = data.info;
+            }
+        };
+
+        this.parse = function(dom){
+            return parse( dom || this.holder.children[0] );
         };
     };
 

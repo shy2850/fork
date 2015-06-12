@@ -12,7 +12,7 @@
 }
 .fork-holder dl{
     position: absolute;
-    height: 120px;
+    height: 140px;
 }
 .fork-holder dt{
     background: #2cac93;
@@ -21,10 +21,43 @@
     padding: 2px;
     cursor: pointer;
     margin: 0 auto;
+    position: relative;
+}
+.fork-holder dt:only-child{
+    overflow: hidden;
+}
+.fork-holder dt:after{
+    position: absolute;
+    content: " ";
+    width: 1px;
+    height: 36px;
+    background: #999;
+    left: 50%;
+    z-index: -1;
+    top: 20px;
 }
 .fork-holder dd{
     position: absolute;
-    top: 60px;
+    top: 90px;
+}
+.fork-holder dd i{
+    position: relative;
+    top: -20px;
+    background: #fff;
+}
+.fork-holder dd:after{
+    position: absolute;
+    content: " ";
+    width: 2000px;
+    height: 48px;
+    border-left: 1px solid #999;
+    border-top: 1px solid #999;
+    left: 50%;
+    z-index: -1;
+    top: -34px;
+}
+.fork-holder dd:last-child:after{
+    border-top: 1px solid #fff;
 }
 .fork-holder .dt-empty{
     background: #d2d2d2;
