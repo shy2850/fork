@@ -18,9 +18,10 @@
         fork:[
             {
                 label: "YES",
+                label_info: "YES",
                 node:{
                     name: "正确答案",
-                    info:"",
+                    info:"正确答案_info",
                     fork:[
                         {label: "YES", node:{name: "正确答案正确答案正确答案",fork:[]}},
                         {label: "NO", node:{name: "错误答案",fork:[]}}
@@ -28,6 +29,7 @@
                 }
             },{
                 label: "NO",
+                label_info: "",
                 node:{
                     name: "错误答案",
                     fork:[
@@ -46,30 +48,39 @@
 
     // 增加测试分支
     setTimeout(function() {
-        fork.addLabel( test, "测试分支: 是" );
+        fork.addLabel( test, {
+            label: "测试分支: 是",
+            label_info: ""
+        });
     }, 1000);
     setTimeout(function() {
-        fork.addLabel( test, "测试分支: 否" );
+        fork.addLabel( test, {
+            label: "测试分支: 否",
+            label_info: ""
+        });
     }, 2000);    
     setTimeout(function() {
-        fork.addLabel( test, "测试分支: 晕" );
+        fork.addLabel( test, {
+            label: "测试分支: 晕",
+            label_info: ""
+        });
     }, 3000);
 
     // 修改分支信息
     setTimeout(function() {
-        fork.setNode( test.children[1].children[1].children[0], {
+        fork.setNode( test.parentNode.children[1].children[1].children[0], {
             name: "修改1",
             info: "修改1有信息"
         } );
     }, 5000);
     setTimeout(function() {
-        fork.setNode( test.children[2].children[1].children[0], {
+        fork.setNode( test.parentNode.children[2].children[1].children[0], {
             name: "修改2",
             info: "修改2有信息"
         } );
     }, 6000);
     setTimeout(function() {
-        fork.setNode( test.children[3].children[1].children[0], {
+        fork.setNode( test.parentNode.children[3].children[1].children[0], {
             name: "修改3",
             info: "修改3无信息"
         } );
@@ -78,7 +89,6 @@
     setTimeout(function() {
         alert( JSON.stringify( fork.parse(), null, 4 ) );
     }, 8000);
-
 </script>
 </body>
 </html>

@@ -17,15 +17,25 @@
 
         dt.innerHTML = data.name;
         if(data.info ){ dt.title = data.info; }
-        if(data.id ){ dl.id = data.id; } 
+        if(data.id ){ dt.id = data.id; } 
+        if(data.init){ dt.className = "dt-empty"; }
         dl.appendChild(dt);
 
         for (var i = 0; i < data.fork.length; i++) {
             var dd = create("dd"),
                 ii = create("i");
             ii.innerHTML = data.fork[i].label;
+            ii.title = data.fork[i].label_info || "";
             dd.appendChild( ii );
-            dd.appendChild( render(data.fork[i].node) );
+            if( data.fork[i].node ){
+                dd.appendChild( render(data.fork[i].node) );
+            }else{
+                dd.appendChild( render({
+                    name: "请添加",
+                    fork: [],
+                    init: true
+                }) );
+            }
             dl.appendChild( dd );
         };
 
@@ -96,13 +106,14 @@
                 ii = create("i"),
                 dl = create("dl"),
                 dt = create("dt");
-            ii.innerHTML = label;
+            ii.innerHTML = label.label;
+            ii.title = label.label_info;
             dd.appendChild(ii);
             dt.className = "dt-empty";
             dt.innerHTML = "空节点";
             dl.appendChild(dt);
             dd.appendChild(dl);
-            node.appendChild(dd);
+            node.parentNode.appendChild(dd);
             position( this.holder.children[0] );
             return dd;
         };
