@@ -57,6 +57,7 @@
         for (var i = 1; i < cdr.length; i++) {
             node.fork.push({
                 label: cdr[i].children[0].innerHTML,
+                label_info: cdr[i].children[0].title,
                 node: parse(cdr[i].children[1])
             });
         };
@@ -96,10 +97,6 @@
             this.holder.appendChild( render(d) );
             position( this.holder.children[0] );
         };
-        // 根据标签结构获取数据
-        this.getData = function(){
-            return parse( this.holder.children[0] );
-        };
 
         this.addLabel = function(node, label){
             var dd = create("dd"),
@@ -126,8 +123,9 @@
             }
         };
 
+        // 根据标签结构获取数据
         this.parse = function(dom){
-            return parse( dom || this.holder.children[0] );
+            return parse( dom ? dom.parentNode : this.holder.children[0] );
         };
     };
 
