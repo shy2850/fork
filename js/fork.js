@@ -114,12 +114,35 @@
             position( this.holder.children[0] );
             return dd;
         };
+        this.setLabel = function(node, label, index){
+            var dd = node.parentNode.children[index],
+                ii = dd.children[0];
+            if( !dd && label ){
+                this.addLabel(node, label);
+            }else if( dd && !label ){
+                dd.parentNode.removeChild( dd );
+            }else{
+                ii.innerHTML = label.label;
+                ii.title = label.label_info;
+            }
+        };
 
         this.setNode = function(node, data){
             node.classList.remove("dt-empty");
             node.innerHTML = data.name;
             if(data.info){
                 node.title = data.info;
+            }
+            if(data.fork){
+                var len = Math.max( data.fork.length, node.parentNode.children.length - 1 ),
+                    len1 = Math.min( data.fork.length, node.parentNode.children.length - 1 );
+                for (var i = 0; i < len; i++) {
+                    this.setLabel( node, data.fork[i], i+1 );
+                };
+
+                if( len !== len1 ){
+                    position( this.holder.children[0] );
+                }
             }
         };
 

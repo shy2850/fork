@@ -72,22 +72,38 @@
             name: "修改1",
             info: "修改1有信息"
         } );
-    }, 5000);
+    }, 4000);
     setTimeout(function() {
         fork.setNode( test.parentNode.children[2].children[1].children[0], {
             name: "修改2",
             info: "修改2有信息"
         } );
-    }, 6000);
+    }, 5000);
     setTimeout(function() {
         fork.setNode( test.parentNode.children[3].children[1].children[0], {
             name: "修改3",
             info: "修改3无信息"
         } );
+    }, 6000);
+
+    setTimeout(function() {
+        fork.setNode( test, {
+            name: "setNode",
+            info: "测试结点",
+            fork: [
+                {
+                    label: "修改1",
+                    info: "修改1有信息"
+                },{
+                    label: "修改3",
+                    info: "修改3无信息"
+                }
+            ]
+        } );
     }, 7000);
 
     setTimeout(function() {
-        alert( JSON.stringify( fork.parse(), null, 4 ) );
+        console.log( fork.parse() );
     }, 8000);
 </script>
 </body>
