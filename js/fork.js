@@ -116,12 +116,13 @@
         };
         this.setLabel = function(node, label, index){
             var dd = node.parentNode.children[index],
-                ii = dd.children[0];
+                ii;
             if( !dd && label ){
                 this.addLabel(node, label);
             }else if( dd && !label ){
                 dd.parentNode.removeChild( dd );
             }else{
+                ii = dd.children[0];
                 ii.innerHTML = label.label;
                 ii.title = label.label_info;
             }
